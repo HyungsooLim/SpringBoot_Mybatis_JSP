@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
 </head>
 <body>
-	<h1>JSP Index Page</h1>
+	<h1 class="c1">JSP Index Page</h1>
 	<h1>${message }</h1>
 	<img alt="" src="${pageContext.request.contextPath }/images/PremierLeague.png">
 	<img alt="" src="${pageContext.request.contextPath }/images/Laliga.jpg">
