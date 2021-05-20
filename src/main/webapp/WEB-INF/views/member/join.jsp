@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html>
 <head>
@@ -49,36 +50,38 @@
 	<!----------- main ------------>
 	<h3>Member Join Page</h3>
 	<div class="container">
-		<form id="frm" action="./join" method="POST">
+		<%-- <form id="frm" action="./join" method="POST"> --%>
+		<form:form id="frm" modelAttribute="memberVO" action="./join" method="POST">
 			<div class="form-group">
 				<label for="username">ID</label> 
-				<input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username">
+				<form:input class="form-control" id="username" aria-describedby="usernameHelp" path="username"/>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password" name="password">
+				<form:password class="form-control" id="password" path="password"/>
 			</div>
 			<div class="form-group">
 				<label for="passwordCheck">Password Check</label> 
-				<input type="password" class="form-control" id="passwordCheck">
+				<input type="password" class="form-control" id="passwordCheck" name="passwordCheck"/>
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label> 
-				<input type="text" class="form-control etc" id="name" name="name">
+				<form:input class="form-control etc" id="name" path="name"/>
+				<form:errors path="name"></form:errors>
 			</div>
 			
 			<div class="form-group">
 				<label for="email">Email</label> 
-				<input type="email" class="form-control etc" id="email" name="email">
+				<form:input class="form-control etc" id="email" path="email"/>
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> 
-				<input type="tel" class="form-control etc" id="phone" name="phone">
+				<form:input class="form-control etc" id="phone" path="phone"/>
 			</div>
 			
 			<input type="submit" id="btn" value="JOIN" class="btn btn-primary">
-			
-		</form>
+		</form:form>
+		<%-- </form> --%>
 	</div>
 	
 	<!----------- footer ------------>
