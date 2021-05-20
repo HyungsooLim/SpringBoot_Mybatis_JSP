@@ -16,6 +16,11 @@
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous"
 >
+<style type="text/css">
+	.c1 {
+		color: red;
+	}
+</style>
 
 <title>Spring Boot JSP - memberJoin</title>
 </head>
@@ -59,6 +64,7 @@
 			<div class="form-group">
 				<label for="password">Password</label>
 				<form:password class="form-control" id="password" path="password"/>
+				<form:errors path="password" class="c1"></form:errors>
 			</div>
 			<div class="form-group">
 				<label for="passwordCheck">Password Check</label> 
@@ -78,6 +84,11 @@
 			<div class="form-group">
 				<label for="phone">Phone</label> 
 				<form:input class="form-control etc" id="phone" path="phone"/>
+			</div>
+			<div class="form-group">
+				<label for="age">Age</label> 
+				<form:input class="form-control etc" id="age" path="age"/>
+				<form:errors path="age"></form:errors>
 			</div>
 			
 			<input type="submit" id="btn" value="JOIN" class="btn btn-primary">
