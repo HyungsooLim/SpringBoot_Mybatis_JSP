@@ -9,6 +9,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.hs.s1.interceptor.MessageLocaleInterceptor;
 
@@ -20,11 +21,15 @@ public class MessageLocaleConfig implements WebMvcConfigurer {
 
 	@Bean
 	public LocaleResolver localeResolver() {
+		SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+		sessionLocaleResolver.setDefaultLocale(Locale.KOREA);
+		
+		
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
 		cookieLocaleResolver.setDefaultLocale(Locale.KOREA);
 		cookieLocaleResolver.setCookieName("lang");
 		
-		return cookieLocaleResolver;
+		return sessionLocaleResolver;
 	}
 	
 	@Override
