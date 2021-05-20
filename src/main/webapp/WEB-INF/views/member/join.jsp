@@ -73,6 +73,7 @@
 			<div class="form-group">
 				<label for="email">Email</label> 
 				<form:input class="form-control etc" id="email" path="email"/>
+				<form:errors path="email"></form:errors>
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> 
