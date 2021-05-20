@@ -16,7 +16,7 @@
 	crossorigin="anonymous"
 >
 
-<title>Spring Boot JSP</title>
+<title>Spring Boot JSP - memberJoin</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -46,24 +46,40 @@
 		</div>
 	</nav>
 	
-	<!----------- jumbotron ------------>
-	<div class="jumbotron jumbotron-fluid mt-3">
-  		<div class="container">
-    		<h1 class="display-4">Fluid jumbotron</h1>
-    		<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-  		</div>
+	<!----------- main ------------>
+	<h3>Member Join Page</h3>
+	<div class="container">
+		<form id="frm" action="./join" method="POST">
+			<div class="form-group">
+				<label for="username">ID</label> 
+				<input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name="password">
+			</div>
+			<div class="form-group">
+				<label for="passwordCheck">Password Check</label> 
+				<input type="password" class="form-control" id="passwordCheck">
+			</div>
+			<div class="form-group">
+				<label for="name">Name</label> 
+				<input type="text" class="form-control etc" id="name" name="name">
+			</div>
+			
+			<div class="form-group">
+				<label for="email">Email</label> 
+				<input type="email" class="form-control etc" id="email" name="email">
+			</div>
+			<div class="form-group">
+				<label for="phone">Phone</label> 
+				<input type="tel" class="form-control etc" id="phone" name="phone">
+			</div>
+			
+			<input type="submit" id="btn" value="JOIN" class="btn btn-primary">
+			
+		</form>
 	</div>
-	
-	<h3>
-		<spring:message code="hello1234" text="default message here"></spring:message>
-	</h3>
-	
-	<h3>
-		<spring:message code="hello"></spring:message>
-	</h3>
-	<h3>
-		<spring:message code="user.welcome" arguments="${user }, ${msg }" argumentSeparator=","></spring:message>
-	</h3>
 	
 	<!----------- footer ------------>
 	<footer class="footer mt-auto py-3 bg-dark">
