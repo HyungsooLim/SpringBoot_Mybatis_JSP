@@ -54,7 +54,16 @@
   		</div>
 	</div>
 	
-	<h3><spring:message code="hello"></spring:message></h3>
+	<h3>
+		<spring:message code="hello1234" text="default message here"></spring:message>
+	</h3>
+	
+	<h3>
+		<spring:message code="hello"></spring:message>
+	</h3>
+	<h3>
+		<spring:message code="user.welcome" arguments="${user }, ${msg }" argumentSeparator=","></spring:message>
+	</h3>
 	
 	<!----------- footer ------------>
 	<footer class="footer mt-auto py-3 bg-dark">

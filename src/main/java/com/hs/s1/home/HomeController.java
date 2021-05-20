@@ -15,6 +15,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) throws Exception {
 		model.addAttribute("message", "JSP Project");
+		
+		model.addAttribute("user", "HS");
+		model.addAttribute("msg", "LOL");
+		
 		return "index";
 	}
 }
