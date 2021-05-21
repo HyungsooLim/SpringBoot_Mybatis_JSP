@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
@@ -16,11 +17,12 @@ public class MemberVO {
 	private String username;
 	
 	// 최소 4글자 이상 통과
-	@Size(min = 4, message = "4 ~ 20 ")
+	@Length(max = 10, min = 4)
 	private String password;
 	@NotEmpty(message = "이름 좀 써라")
 	private String name;
 	@Email
+	@NotEmpty
 	private String email;
 	private String phone;
 	
