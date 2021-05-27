@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.hs.s1.board.notice.NoticeMapper">
+	<!-- 공통으로 사용하는 sql문 -->
+	<sql id="searcher">
+		<where>
+			<choose>
+				<when test="kind=='Writer'">
+					writer like concat('%', #{search}, '%')
+				</when>
+				<when test="kind=='Contents'">
+					contents like concat('%', #{search}, '%')
+				</when>
+				<otherwise>
+					title like concat('%', #{search}, '%')
+				</otherwise>
+			</choose>
+		</where>
+	</sql>
+	
+	<select id="getList" resultType="NoticeVO" parameterType="Pager">
+		select * from NOTICE
+		<include refid="searcher"></include>
+		order by num desc
+		limit #{startRow}, #{perPage}
+		<!-- limit 시작index번호(0부터 시작), 개수 -->
+	</select>
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		select count(num) from NOTICE
+		<include refid="searcher"></include>
+	</select>
+	
+	<select id="getSelect" parameterType="BoardVO" resultMap="selectResult">
+		select N.*, NF.* from notice N
+		left join noticeFiles NF
+		on N.num = NF.num
+		where N.num=#{num}
+	</select>
+	<resultMap type="NoticeVO" id="selectResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
+		<collection property="files" javaType="java.util.List" ofType="BoardFileVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="ogName" property="ogName"/>
+		</collection>	
+	</resultMap>
+	
+	<update id="setHitUpdate" parameterType="BoardVO">
+		update NOTICE set hit=hit+1 where num=#{num}
+	</update>
+	
+	<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
+		insert into NOTICE values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
+	</insert>
+	
+	<insert id="setFileInsert" parameterType="BoardFileVO">
+		insert into noticeFiles(num, fileName, ogName)
+		values(#{num}, #{fileName}, #{ogName})
+	</insert>
+	
+	<update id="setUpdate" parameterType="BoardVO">
+		update NOTICE set title=#{title}, writer=#{writer}, contents=#{contents}
+		where num=#{num} 
+	</update>
+	
+	<delete id="setDelete" parameterType="BoardVO">
+		delete from NOTICE where num=#{num}
+	</delete>
+	
+</mapper>
