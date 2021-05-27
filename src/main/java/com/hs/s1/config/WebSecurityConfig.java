@@ -60,6 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			// 로그인 폼에 관한 메서드
 			// 폼 따로 없으면 default login form 으로 이동
 			.formLogin()
+				// username 파라미터명을 바꾸고 싶으면
+//				.usernameParameter("id")
+				// password 파라미터명을 바꾸고 싶으면
+//				.passwordParameter("pw")
 				.loginPage("/member/login")
 				// 로그인 성공시 요청 보낼 URL 설정
 				.defaultSuccessUrl("/member/memberLoginResult")
