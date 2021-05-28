@@ -26,7 +26,7 @@ public class MemberService implements UserDetailsService {
 	private PasswordEncoder passwordEncoder;
 	
 	@Transactional(rollbackFor = Exception.class)
-	public Integer setJoin(MemberVO memberVO, MultipartFile multipartFile) throws Exception {
+	public Integer setJoin(MemberVO memberVO) throws Exception {
 		// 0. 사전작업
 		// a. password 암호화
 		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
@@ -42,19 +42,19 @@ public class MemberService implements UserDetailsService {
 		map.put("roleName", "ROLE_MEMBER");
 		result = memberMapper.setMemberRole(map);
 		
-		// 3. HDD save
-		String filePath="upload/member/";
-		if(multipartFile.getSize() != 0) {
-			String fileName = fileManager.saveFile(multipartFile, filePath);
-			System.out.println(fileName);
-			MemberFileVO memberFileVO = new MemberFileVO();
-			memberFileVO.setFileName(fileName);
-			memberFileVO.setOgName(multipartFile.getOriginalFilename());
-			memberFileVO.setUsername(memberVO.getUsername());
-			
-		// 3. MEMBERFILE table save
-			result = memberMapper.setFileJoin(memberFileVO);
-		}
+//		// 3. HDD save
+//		String filePath="upload/member/";
+//		if(multipartFile.getSize() != 0) {
+//			String fileName = fileManager.saveFile(multipartFile, filePath);
+//			System.out.println(fileName);
+//			MemberFileVO memberFileVO = new MemberFileVO();
+//			memberFileVO.setFileName(fileName);
+//			memberFileVO.setOgName(multipartFile.getOriginalFilename());
+//			memberFileVO.setUsername(memberVO.getUsername());
+//			
+//		// 3. MEMBERFILE table save
+//			result = memberMapper.setFileJoin(memberFileVO);
+//		}
 		return result;
 	}
 	

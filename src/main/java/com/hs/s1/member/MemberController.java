@@ -38,9 +38,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public ModelAndView setJoin(@Valid MemberVO memberVO, Errors errors, MultipartFile file) throws Exception {
+	public ModelAndView setJoin(@Valid MemberVO memberVO, Errors errors) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.setJoin(memberVO, file);
+		int result = memberService.setJoin(memberVO);
 		mv.setViewName("redirect:/");
 		
 //		if(errors.hasErrors()) {
