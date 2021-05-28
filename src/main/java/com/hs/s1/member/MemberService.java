@@ -65,6 +65,7 @@ public class MemberService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUsername(username);
+		System.out.println(memberVO.getUsername());
 		memberVO = memberMapper.getLogin(memberVO);
 		return memberVO;
 	}

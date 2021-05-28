@@ -62,7 +62,11 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberLogin")
-	public String getLogin(HttpServletRequest request) throws Exception {
+	public String getLoginFail(HttpServletRequest request) throws Exception {
+		Object obj = request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl impl = (SecurityContextImpl)obj;
+		Authentication auth = impl.getAuthentication();
+		System.out.println(auth.getPrincipal());
 		System.out.println("Message : "+request.getAttribute("message"));
 		return "member/memberLogin";
 	}
