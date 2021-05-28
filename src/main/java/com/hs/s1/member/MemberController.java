@@ -2,6 +2,7 @@ package com.hs.s1.member;
 
 import java.util.Enumeration;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -58,6 +59,12 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/memberLogin");
 		return mv;
+	}
+	
+	@PostMapping("memberLogin")
+	public String getLogin(HttpServletRequest request) throws Exception {
+		System.out.println("Message : "+request.getAttribute("message"));
+		return "member/memberLogin";
 	}
 	
 	@GetMapping("memberLoginResult")

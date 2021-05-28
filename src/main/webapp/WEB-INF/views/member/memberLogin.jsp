@@ -36,6 +36,7 @@
 
 	<!----------- main ------------>
 	<div class="container">
+		<h3>${message }</h3>
 			<form id="frm" action="./login" method="POST">
 				<div class="form-group">
 					<label for="username">ID</label> <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username">
