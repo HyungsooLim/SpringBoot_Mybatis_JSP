@@ -29,7 +29,7 @@
 		on M.username=MR.username
 		inner join role R
 		on MR.id=R.id
-		where M.username=#{username};
+		where M.username=#{username}
 	</select>
 	<resultMap type="MemberVO" id="getLoginResult">
 		<id column="username" property="username"/>
